@@ -217,6 +217,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         topText.minimumFontSize = 30.0
         bottomText.minimumFontSize = 30.0
+        
+        topText.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
+        bottomText.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
         // Do any additional setup after loading the view, typically from a nib.
 
     }

@@ -121,23 +121,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-    @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
+    func pickAnImageFromEither(camera: Bool) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        if(camera){
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        }else{
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        }
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
+        pickAnImageFromEither(false)
+        
+    }
+    
     @IBAction func pickAnImageFromCamera (sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
+        pickAnImageFromEither(true)
         
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     
@@ -217,9 +222,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         topText.minimumFontSize = 30.0
         bottomText.minimumFontSize = 30.0
-        
-        topText.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
-        bottomText.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
         // Do any additional setup after loading the view, typically from a nib.
 
     }
